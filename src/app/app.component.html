@@ -1,0 +1,53 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">
+  Jonathan Macías Taller
+  </a>
+</nav>
+
+<body>
+  
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+      <ul class="list-group">
+        <li *ngFor="let mascota of mascotasArray" 
+        class="list-group-item list-group-item-action"
+        (click)="openForEdit(mascota)"
+        [class.active]="mascota == selectMascota">
+          <span class="badge badge-primary">{{mascota.id}}</span>
+          {{mascota.name}} - {{mascota.color}}
+        </li>
+      </ul>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            Inserte nuevo nombre
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectMascota.name"
+            placeholder="Ingresa un nombre" class="form-control">
+          </div>
+          <div class="form-group">
+              <input type="text" [(ngModel)]="selectMascota.color"
+              placeholder="Ingresa pais" class="form-control">
+          </div>
+          
+          <button (click)="addOrEdit()" 
+            class="btn btn-primary">Añadir
+          </button>
+          <button 
+            *ngIf="selectMascota.id !==0"
+            (click)="borrar()" 
+            class="btn btn-danger">Borrar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+
+</div>
+</body>
